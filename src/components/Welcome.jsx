@@ -1,4 +1,3 @@
-import { fetchJsonData, getData, saveData } from '../utility';
 function Welcome({ setUsername, handleNameSubmit }) {
   return (
     <div className="welcome">

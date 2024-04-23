@@ -1,24 +1,40 @@
-function StarterPokemons({ pokemonList, selectStarter }) {
+import { useState, useEffect } from 'react';
+import { fetchJsonData } from '../utility';
+import { PokemonCard } from './PokemonCard';
+import userData from '../data.json';
+
+function StarterPokemons({ userName, selectStarter }) {
+  const [pokemonData, setPokemonData] = useState([]);
+  const [userState, setUserState] = useState([userData]);
+  console.log(userState);
+
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      const dataPromises = userData.starterOptions.map(url => fetchJsonData(url));
+      const pokemonResponses = await Promise.all(dataPromises);
+      setPokemonData(pokemonResponses);
+    };
+
+    fetchPokemonData();
+  }, [userState]);
+
   return (
-    <div className="starter-pokemon">
-      <h2>Choose Your Starter Pokémon:</h2>
-      <div className="pokemon-cards">
-        {pokemonList.map((pokemon, index) => (
-          <div
+    <>
+      <h2>{userName}, choose your first animal</h2>
+      <div className="pokemon-list">
+        {pokemonData.map((pokemon, index) => (
+          <button
             key={index}
             className={`card ${pokemon.name.toLowerCase()}`}
-            onClick={() => selectStarter(pokemon.url)}
-          >
-            {/* <img 
-              src={pokemon.sprites?.other?.dream_world?.front_default} 
-              alt={pokemon.name}
-              className="pokemon-image"
-            /> */}
-            <span>{pokemon.name.toUpperCase()}</span>
-          </div>
+            onClick={() => selectStarter(userData.starterOptions[index])}>
+            <PokemonCard
+              image={pokemon.sprites.other.home.front_default} //better image: sprites.other.home.front_default
+              name={pokemon.name}
+            />
+          </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

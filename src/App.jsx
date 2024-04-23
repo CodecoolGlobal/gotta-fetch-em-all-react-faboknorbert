@@ -1,54 +1,47 @@
-import { useState } from 'react'
-import './Styles/welcome.css'
+import { useState, useEffect } from 'react';
+import './Styles/welcome.css';
 import Welcome from './components/Welcome';
 import StarterPokemons from './components/StarterPokemons';
-import { fetchJsonData, getData, saveData } from './utility';
+import userData from './data.json';
 
 function App() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(userData.username || '');
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
-  const [pokemonList, setPokemonList] = useState([]);
+  const [userDataState, setUserDataState] = useState(userData);
 
-  const handleNameSubmit = async () => {
+  const handleNameSubmit = () => {
     setShowStarterPokemon(true);
 
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=7');
-    const data = await response.json();
-
-    const selectedPokemon = [data.results[0], data.results[3], data.results[6]];
-    setPokemonList(selectedPokemon);
-
-    const existingData = await fetchJsonData();
-    const updatedData = {
-      ...existingData,
+    setUserDataState(prevState => ({
+      ...prevState,
       username,
-      selectedPokemon: selectedPokemon.map(pokemon => pokemon.name),
-    };
-    await saveData(updatedData);
+    }));
   };
 
-  function selectStarter(pokemonUrl, username) {
+  function selectStarter(pokemonUrl) {
     fetch(pokemonUrl)
       .then((response) => response.json())
       .then(async (data) => {
         const pokemonName = data.name;
         alert(`Welcome, ${username}! You've chosen ${pokemonName.toUpperCase()} as your starter Pokémon!`);
 
-        const existingData = await fetchJsonData();
-        const updatedData = {
-          ...existingData,
+        setUserDataState(prevState => ({
+          ...prevState,
           selectedStarter: pokemonName,
-        };
-        await saveData(updatedData);
+        }));
       });
   }
+
+  useEffect(() => {
+    localStorage.setItem('userData', JSON.stringify(userDataState));
+  }, [userDataState]);
 
   return (
     <div className='App'>
       {showStarterPokemon ? (
-        <StarterPokemons
-          pokemonList={pokemonList}
-          selectStarter={(pokemonUrl) => selectStarter(pokemonUrl, username)}
+        <StarterPokemons 
+          username={username}
+          selectStarter={selectStarter}
         />
       ) : (
         <Welcome
@@ -60,4 +53,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

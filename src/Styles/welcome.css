@@ -54,10 +54,14 @@ button {
 
 .card {
   border: 1px solid #ccc;
+  background-color: #242424;
   padding: 20px;
   text-align: center;
   cursor: pointer;
+  im
 }
+
+
 
 .bulbasaur:hover {
   background-color: green;
