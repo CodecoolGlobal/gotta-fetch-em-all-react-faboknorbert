@@ -1,21 +1,20 @@
-import { readFile, writeFile } from "node:fs/promises";
+import fs from 'fs';
 
 const DATA_PATH = './data.json';
 
-async function fetchJsonData(url){
+export async function fetchJsonData(url){
     const response = await fetch(url);
     const data = await response.json();
     return data;
 }
 
-async function getData(){
-    const fileContent = await readFile(DATA_PATH, 'utf-8');
+export async function getData(){
+    const fileContent = await fs.readFile(DATA_PATH, 'utf-8');
     return JSON.parse(fileContent);
 }
 
-async function saveData(data){
+export async function saveData(data){
     const fileContentToSave = JSON.stringify(data, null, 2);
-    writeFile(DATA_PATH, fileContentToSave);
+    fs.writeFile(DATA_PATH, fileContentToSave);
 }
 
-export default {fetchJsonData, getData, saveData}
