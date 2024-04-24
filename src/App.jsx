@@ -3,8 +3,8 @@ import './Styles/welcome.css';
 import Welcome from './components/Welcome';
 import StarterPokemons from './components/StarterPokemons';
 import Battle from './Components/Battle.jsx'
-import './Styles/App.css
-import PokemonEncounter from './components/PokemonEncounter';
+import './Styles/App.css'
+import PokemonEncounter from './Components/PokemonEncounter';
 
 function App() {
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
