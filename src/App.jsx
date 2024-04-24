@@ -4,6 +4,7 @@ import Welcome from './components/Welcome';
 import StarterPokemons from './components/StarterPokemons';
 import Battle from './Components/Battle.jsx'
 import './App.css'
+import PokemonEncounter from './components/PokemonEncounter';
 
 function App() {
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
@@ -13,6 +14,7 @@ function App() {
     "pokemons": []
   });
 
+  
   const handleNameSubmit = () => {
     setShowStarterPokemon(true);
     
