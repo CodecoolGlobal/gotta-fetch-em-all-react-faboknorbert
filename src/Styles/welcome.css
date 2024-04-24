@@ -81,3 +81,27 @@ button {
 .squirtle:hover {
   background-color: rgb(29, 132, 241);
 }
+
+.p{
+  text-align: center;
+}
+
+.finalize-game p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 3px;
+}
+
+.pokemon-icon {
+  width: 100px;
+  height: 100px;
+}

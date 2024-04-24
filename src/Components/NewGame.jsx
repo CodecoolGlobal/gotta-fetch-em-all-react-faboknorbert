@@ -1,39 +1,47 @@
 import { useState } from 'react';
-import { fetchJsonData } from '../utility';
-import '../Styles/welcome.css'
+import '../Styles/welcome.css';
 import Welcome from './Welcome';
 import StarterPokemons from './StarterPokemons';
+import FinalizeGame from './FinalizeGame';
 
-function NewGame({ userData, setUserData }) {
-
-  const [showStarterPokemon, setShowStarterPokemon] = useState(false);
+function NewGame({ userData, setUserData, moveToLocations }) {
+  const [showFinalizeGame, setShowFinalizeGame] = useState(false);
 
   const handleNameSubmit = () => {
-    setShowStarterPokemon(true);
+    setShowFinalizeGame(true);
   };
 
   function selectStarter(pokemonUrl) {
     fetch(pokemonUrl)
       .then((response) => response.json())
       .then(async (data) => {
-        const pokemonName = data.name;
-        alert(`${userData.username} you've chosen ${pokemonName.toUpperCase()} as your starter Pokémon!`);
-
+        
         setUserData(prevState => ({
           ...prevState,
-          selectedStarter: pokemonName,
+          selectedStarter: data,
           pokemons: [...prevState.pokemons, pokemonUrl]
         }));
+
+        handleNameSubmit();
       });
   }
 
+  const startGame = () => {
+    moveToLocations();
+  };
+
   return (
     <div className="new-game">
-      {!showStarterPokemon ? (
+      {!showFinalizeGame ? (
         <Welcome
           setUserData={setUserData}
           handleUsernameChange={(e) => setUserData(prevState => ({ ...prevState, username: e.target.value }))}
           handleNameSubmit={handleNameSubmit}
+        />
+      ) : userData.selectedStarter ? (
+        <FinalizeGame
+          userData={userData}
+          startGame={startGame}
         />
       ) : (
         <StarterPokemons 
