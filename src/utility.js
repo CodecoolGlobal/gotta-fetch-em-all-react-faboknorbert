@@ -9,7 +9,7 @@ export async function fetchJsonData(url){
 }
 
 export async function getData(){
-    const fileContent = await fs.readFile(DATA_PATH, 'utf-8');
+    const fileContent = fs.readFile(DATA_PATH, 'utf-8');
     return JSON.parse(fileContent);
 }
 
