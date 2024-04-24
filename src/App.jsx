@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './Styles/welcome.css';
 import Welcome from './components/Welcome';
 import StarterPokemons from './components/StarterPokemons';
+import Battle from './Components/Battle.jsx'
+import './App.css'
 
 function App() {
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
