@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Battle from './Components/Battle.jsx'
-import './App.css'
+import './Styles/App.css'
 
 function App() {
   const [pageState, setPageState] = useState('welcome');
