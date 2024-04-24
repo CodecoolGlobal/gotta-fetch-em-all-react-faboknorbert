@@ -12,22 +12,21 @@ function App() {
   });
   const [stage, setStage] = useState("NewGame");
 
-  const moveToLocations = () => {
-    setStage("Locations");
-  };
-
   return (
     <div className='App'>
       {stage === "NewGame" && (
         <NewGame 
           userData={userData}
           setUserData={setUserData}
-          moveToLocations={moveToLocations}
+          setStage={setStage}
         />
       )}
 
       {stage === "Locations" && (
-        <Locations />
+        <Locations
+          setStage={setStage}
+          setUserData={setUserData}
+        />
       )}
     </div>
   );

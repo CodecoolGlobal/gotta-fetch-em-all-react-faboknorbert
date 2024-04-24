@@ -4,7 +4,7 @@ import Welcome from './Welcome';
 import StarterPokemons from './StarterPokemons';
 import FinalizeGame from './FinalizeGame';
 
-function NewGame({ userData, setUserData, moveToLocations }) {
+function NewGame({ userData, setUserData, setStage }) {
   const [showFinalizeGame, setShowFinalizeGame] = useState(false);
 
   const handleNameSubmit = () => {
@@ -27,7 +27,7 @@ function NewGame({ userData, setUserData, moveToLocations }) {
   }
 
   const startGame = () => {
-    moveToLocations();
+    setStage("Locations");
   };
 
   return (

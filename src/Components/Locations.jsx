@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchJsonData } from '../utility';
 
-function Locations() {
+function Locations({ setStage, setUserData }) {
   const kantoLocations = [
     "https://pokeapi.co/api/v2/location/86/",
     "https://pokeapi.co/api/v2/location/154/",
@@ -20,7 +20,7 @@ function Locations() {
     "https://pokeapi.co/api/v2/location/500/",
     "https://pokeapi.co/api/v2/location/506/",
     "https://pokeapi.co/api/v2/location/517/",
-    "https://pokeapi.co/api/v2/location/811/",
+    "https://pokeapi.co/api/v2/location/508/",
     "https://pokeapi.co/api/v2/location/158/",
     "https://pokeapi.co/api/v2/location/504/"
   ];
@@ -38,12 +38,27 @@ function Locations() {
     fetchLocations();
   }, []);
 
+  const handleLocationClick = (id) => {
+    setUserData(prevState => ({
+      ...prevState,
+      chosenLocation: `https://pokeapi.co/api/v2/location/${id}`
+    }));
+    setStage('randomEncounter');
+  };
+
   return (
     <div className="locations">
       <h2>Locations</h2>
       <ul>
         {locationsData.map((location, index) => (
-          <li id={kantoLocations[index]} key={index}>{location.names[1].name}</li>
+          <li 
+            key={index}
+            id={kantoLocations[index]}
+            onClick={() => handleLocationClick(location.id)}
+            className="location-item"
+          >
+            {location.names[1].name}
+          </li>
         ))}
       </ul>
     </div>

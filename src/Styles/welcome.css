@@ -101,6 +101,10 @@ ul li {
   padding: 3px;
 }
 
+.location-item {
+  cursor: pointer;
+}
+
 .pokemon-icon {
   width: 100px;
   height: 100px;
