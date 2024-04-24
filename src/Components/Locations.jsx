@@ -1,0 +1,1 @@
+//https://pokeapi.co/api/v2//region/1/ -> locations[] -> [0]{} -> .url""
