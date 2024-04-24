@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from "fs";
 
 const DATA_PATH = './data.json';
 
@@ -17,4 +17,3 @@ export async function saveData(data){
     const fileContentToSave = JSON.stringify(data, null, 2);
     fs.writeFile(DATA_PATH, fileContentToSave);
 }
-

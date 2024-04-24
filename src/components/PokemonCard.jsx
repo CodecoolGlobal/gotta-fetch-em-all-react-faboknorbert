@@ -2,7 +2,7 @@ export function PokemonCard({image, name}){
     return (
         <>
             <img src={image}></img>
-            <h2>{name}</h2>
+            <h2>{name.toUpperCase()}</h2>
         </>
     )
 }

@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './Styles/welcome.css';
 import Welcome from './components/Welcome';
 import StarterPokemons from './components/StarterPokemons';
-import userData from './data.json';
 
 function App() {
-  const [username, setUsername] = useState(userData.username || '');
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
-  const [userDataState, setUserDataState] = useState(userData);
+  const [userData, setUserData] = useState({
+    "username": "",
+    "starterOptions": ["https://pokeapi.co/api/v2/pokemon/1", "https://pokeapi.co/api/v2/pokemon/4", "https://pokeapi.co/api/v2/pokemon/7"],
+    "pokemons": []
+  });
 
   const handleNameSubmit = () => {
     setShowStarterPokemon(true);
-
-    setUserDataState(prevState => ({
+    
+    setUserData(prevState => ({
       ...prevState,
-      username,
+      username: userData.username,
     }));
   };
 
@@ -23,29 +25,26 @@ function App() {
       .then((response) => response.json())
       .then(async (data) => {
         const pokemonName = data.name;
-        alert(`Welcome, ${username}! You've chosen ${pokemonName.toUpperCase()} as your starter Pokémon!`);
+        alert(`Welcome, ${userData.username}! You've chosen ${pokemonName.toUpperCase()} as your starter Pokémon!`);
 
-        setUserDataState(prevState => ({
+        setUserData(prevState => ({
           ...prevState,
           selectedStarter: pokemonName,
+          pokemons: [...prevState.pokemons, pokemonUrl]
         }));
       });
   }
-
-  useEffect(() => {
-    localStorage.setItem('userData', JSON.stringify(userDataState));
-  }, [userDataState]);
 
   return (
     <div className='App'>
       {showStarterPokemon ? (
         <StarterPokemons 
-          username={username}
           selectStarter={selectStarter}
+          userData={userData}
         />
       ) : (
         <Welcome
-          setUsername={setUsername}
+          setUserData={setUserData}
           handleNameSubmit={handleNameSubmit}
         />
       )}

@@ -1,4 +1,10 @@
-function Welcome({ setUsername, handleNameSubmit }) {
+function Welcome({ setUserData, handleNameSubmit }) {
+  const handleUsernameChange = (e) => {
+    setUserData(prevState => ({
+      ...prevState,
+      username: e.target.value,
+    }));
+  };
   return (
     <div className="welcome">
       <h1>Welcome to Our Pokémon App!</h1>
@@ -7,7 +13,7 @@ function Welcome({ setUsername, handleNameSubmit }) {
         type="text"
         id="username"
         placeholder="Enter name here"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={handleUsernameChange}
       />
       <button onClick={handleNameSubmit}>Submit</button>
     </div>
