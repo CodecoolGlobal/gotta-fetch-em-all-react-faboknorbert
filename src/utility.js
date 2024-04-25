@@ -17,3 +17,8 @@ export async function saveData(data){
     const fileContentToSave = JSON.stringify(data, null, 2);
     fs.writeFile(DATA_PATH, fileContentToSave);
 }
+
+export function getRandomArbitrary(min, max) {
+    const randomNumb = Math.random() * (max - min) + min;
+    return randomNumb.toFixed();
+}
