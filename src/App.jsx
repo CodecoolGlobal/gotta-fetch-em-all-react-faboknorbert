@@ -3,6 +3,7 @@ import NewGame from './Components/NewGame.jsx';
 import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
 import PokemonEncounter from './Components/PokemonEncounter.jsx';
+import NoPokemons from "./Components/NoPokemons.jsx"
 
 import './Styles/App.css'
 
@@ -45,6 +46,10 @@ function App() {
         setStage = {setStage}
         setBattleData = {setBattleData}
         />
+
+      case 'noPokemons':
+        return <NoPokemons
+        setStage = {setStage}/>
 
       case 'Battle':
         return <Battle
