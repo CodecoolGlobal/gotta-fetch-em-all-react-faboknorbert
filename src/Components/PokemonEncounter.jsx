@@ -34,7 +34,7 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
         
         async function pickRandomPokemon(url) {
             const pokemonList = await collectPokemons(url)
-            if (pokemonList.length <= 0) setStage("Locations")
+            if (pokemonList.length <= 0) setStage("noPokemons")
             const sortedList = [... new Set(pokemonList)];
             const randomPokemon = sortedList[Math.floor(Math.random() * sortedList.length)];
             setPokemonURL(randomPokemon);
