@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './Styles/welcome.css';
-import Welcome from './components/Welcome';
-import StarterPokemons from './components/StarterPokemons';
+import Welcome from './Components/Welcome';
+import StarterPokemons from './Components/StarterPokemons';
 import Battle from './Components/Battle.jsx'
 import './App.css'
-import PokemonEncounter from './components/PokemonEncounter';
+import PokemonEncounter from './Components/PokemonEncounter';
 
 function App() {
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
