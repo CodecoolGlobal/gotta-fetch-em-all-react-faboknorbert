@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {fetchJsonData, getRandomArbitrary} from '../utility.js'
-import { PokemonCard } from './PokemonCard.jsx';
 import '../Styles/Battle.css'
 import { BattlePokemonCard } from './BattlePokemonCard.jsx';
 
@@ -32,7 +31,7 @@ function Battle(props){
             const pokemon = await fetchJsonData(pokemonUrl);
             return {
                 name: pokemon.name,
-                hp: pokemon.stats[0].base_stat + 25,
+                hp: pokemon.stats[0].base_stat,
                 attack: pokemon.stats[1].base_stat,
                 defend: pokemon.stats[2].base_stat,
                 speed:  pokemon.stats[5].base_stat,
@@ -43,7 +42,8 @@ function Battle(props){
         async function getPokemons(){
             const _ownPokemon = await getPokemon(props.ownPokemon);
             const _opponentPokemon = await getPokemon(props.opponentPokemon);
-
+            _ownPokemon.hp += 25;
+            console.log(_ownPokemon);
             _ownPokemon['attacker'] = _ownPokemon.speed > _opponentPokemon.speed;
             _opponentPokemon['attacker'] = _opponentPokemon.speed > _ownPokemon.speed;
 
