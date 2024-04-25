@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchJsonData } from '../utility';
 import { PokemonCard } from './PokemonCard';
+import  '../Styles/welcome.css'
 
 function StarterPokemons({ userData, selectStarter, starterPokemonData, setStarterPokemonData }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ function StarterPokemons({ userData, selectStarter, starterPokemonData, setStart
         {starterPokemonData.map((pokemon, index) => (
           <button
             key={index}
-            className={`card ${pokemon.name.toLowerCase()}`}
+            className={`card ${pokemon.types[0].type.name}`}
             onClick={() => selectStarter(starterOptions[index])}>
             <PokemonCard
               image={pokemon.sprites.other.home.front_default}

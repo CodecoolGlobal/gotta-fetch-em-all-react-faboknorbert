@@ -34,9 +34,10 @@ export function Results({ownPokemonUrl, opponentPokemonUrl, hasWin, setStage}){
     }, []);
 
     function displayLose(){
+        console.log(ownPokemon);
         return (
-        <div>
-            <h1>You lost, This cute pokemon died because of you!</h1>
+        <div className='result'>
+            <h1>You lost, {ownPokemon.name.toUpperCase()} almost died because of you!</h1>
             {ownPokemon ? (<PokemonCard name={ownPokemon.name} image={ownPokemon.sprite}/>) : (<p>Loading...</p>)}
         </div>
         );
@@ -44,7 +45,7 @@ export function Results({ownPokemonUrl, opponentPokemonUrl, hasWin, setStage}){
 
     function displayWin(){
         return (
-            <div>
+            <div className='result'>
                 <h1>Congratulations, You Won!</h1>
                 <h2>From now, you can use {opponentPokemon ? (opponentPokemon.name.toUpperCase()) : ('Loading...')} in your battles!</h2>
                 {opponentPokemon ? (<PokemonCard name={opponentPokemon.name} image={opponentPokemon.sprite}/>) : (<p>Loading...</p>)}
@@ -54,9 +55,11 @@ export function Results({ownPokemonUrl, opponentPokemonUrl, hasWin, setStage}){
 
     return (
         <div>
-            {hasWin ?
-                (displayWin()) : (displayLose())         
-            }
+            {ownPokemon && opponentPokemon ? (
+                hasWin ? displayWin() : displayLose()
+            ) : (
+                <p>Loading...</p>
+            )}
             <button onClick={() => setStage('Locations')}>Back To Map</button>
         </div>
     )

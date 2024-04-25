@@ -34,6 +34,7 @@ function NewGame({ userData, setUserData, setStage }) {
     <div className="new-game">
       {!showFinalizeGame ? (
         <Welcome
+          userData={userData}
           setUserData={setUserData}
           handleUsernameChange={(e) => setUserData(prevState => ({ ...prevState, username: e.target.value }))}
           handleNameSubmit={handleNameSubmit}

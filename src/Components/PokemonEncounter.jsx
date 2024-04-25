@@ -30,7 +30,7 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
     const [pokemonData, setPokemonData] = useState(null);
     const [isFighting, setIsFighting] = useState(false);
 
-    useEffect(() => { // fetches a random Pokemon from the area
+    useEffect(() => {
         
         async function pickRandomPokemon(url) {
             const pokemonList = await collectPokemons(url)
@@ -43,9 +43,9 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
         }
 
         pickRandomPokemon(userData.chosenLocation);
-    }, [userData]);
+    }, []);
 
-    function handleReoccuringPokemon() {
+    function isReoccuringPokemon() {
         if (userData.pokemons.includes(pokemonURL)) return true;
         return false;
     }
@@ -63,27 +63,27 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
     }
 
     return (
-        <div>
+        <>
             {isFighting ? (
                 <PickBattlingPokemon
                 userData = { userData }
                 setStage = {setStage}
                 setBattleData = { setBattleData }/>
             ) : (
-                <div>
+                <>
                 {pokemonData ? (
-                        <div>
+                        <div className="encounter">
                             <PokemonCard
                             image={pokemonData.sprites.other.home.front_default}
                             name={pokemonData.name}/>
-                            {handleReoccuringPokemon() ? (
-                                <div>
+                            {isReoccuringPokemon() ? (
+                                <>
                                     <h3>Looks like we already caught this Pokémon, do you still wish to fight?</h3>
-                                </div>
+                                </>
                             ) : (
-                                <div>
+                                <>
                                     <h3>Are you sure you want to battle this Pokémon?</h3>
-                                </div>
+                                </>
                             )}
                             <button onClick = {handleFight}>Fight</button>
                             <button onClick = {handleRetreat}>Run Away</button>
@@ -91,9 +91,9 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
                     ) : (
                         <h2>Ambushed!</h2>
                     )}
-                </div>
+                </>
             )} 
-        </div>
+        </>
     )
 }
 

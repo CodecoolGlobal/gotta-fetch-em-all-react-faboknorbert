@@ -9,8 +9,8 @@ function ProcessBattle(ownPokemon, ownSetter, opponentPokemon, opponentSetter){
 }
 
 function Attack(attacker, defender, defenderSetter){
-    const B = attacker.attack; //attacker attack
-    const D = defender.defend; //defender defense
+    const B = attacker.attack;
+    const D = defender.defend;
     const Z = getRandomArbitrary(217, 255);
 
     const damage = ((((2/5+2)*B*60/D)/50)+2)*Z/255;
@@ -38,7 +38,10 @@ function Battle(props){
         async function getPokemons(){
             const _ownPokemon = await getPokemon(props.ownPokemon);
             const _opponentPokemon = await getPokemon(props.opponentPokemon);
-            _ownPokemon.hp += 25;
+            //cheats
+            _ownPokemon.hp += 30;
+            _ownPokemon.attack += 30;
+            _ownPokemon.defend += 50
             _ownPokemon['attacker'] = _ownPokemon.speed > _opponentPokemon.speed;
             _opponentPokemon['attacker'] = _opponentPokemon.speed > _ownPokemon.speed;
 
@@ -57,9 +60,14 @@ function Battle(props){
             }
     
             if(opponentPokemon.hp <= 0){
+                if(props.userData.pokemons.includes(props.opponentPokemon)){
+                    props.setBattleData(prevData => ({...prevData, hasWon: true}));
+                    props.setStage('Results');
+                } else{
                 props.setUserData(prevData => ({...prevData, pokemons:[...prevData.pokemons, props.opponentPokemon]}));
-                props.setBattleData(prevData => ({...prevData, hasWon: true}))
-                props.setStage('Results')
+                props.setBattleData(prevData => ({...prevData, hasWon: true}));
+                props.setStage('Results');
+                }
             }
         }
         
