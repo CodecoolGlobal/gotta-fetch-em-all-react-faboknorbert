@@ -5,7 +5,6 @@ import Battle from './Components/Battle.jsx'
 
 import './Styles/App.css'
 import PokemonEncounter from './components/PokemonEncounter';
-import './Styles/App.css'
 
 function App() {
   const [userData, setUserData] = useState({
@@ -31,7 +30,7 @@ function App() {
           setUserData={setUserData}
         />
       )}
-    </div>
+    </div> 
   );
 }
 
