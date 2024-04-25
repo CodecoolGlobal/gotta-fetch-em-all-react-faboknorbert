@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchJsonData } from "../utility";
 import { PokemonCard } from "./PokemonCard";
 
-function PickBattlingPokemon ({ userData }) {
+function PickBattlingPokemon ({ userData, setBattleData, setStage }) {
 
     const [pokemonData, setPokemonData] = useState([]);
 
@@ -18,6 +18,14 @@ function PickBattlingPokemon ({ userData }) {
         fetchPokemonData();
       }, [userData]);
 
+      function handleDecision(pokemonURL) {
+        setBattleData(prevState => ({
+          ...prevState,
+          pickedPokemon: pokemonURL,
+        }));
+        setStage("Battle")
+      }
+
       return (
         <>
           <h2>Which Pokémon of yours will you use to battle?</h2>
@@ -26,7 +34,7 @@ function PickBattlingPokemon ({ userData }) {
               <button
                 key={index}
                 className={`card ${pokemon.name.toLowerCase()}`}
-                onClick={() => {console.log("A")}}>
+                onClick={() => handleDecision(pokemonData[index])}>
                 <PokemonCard
                   image={pokemon.sprites.other.home.front_default}
                   name={pokemon.name}

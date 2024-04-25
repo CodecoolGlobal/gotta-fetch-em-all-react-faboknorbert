@@ -24,7 +24,7 @@ async function collectPokemons(url) {
     return pokemonArray;
 }
 
-function PokemonEncounter ({ url, userData }) {
+function PokemonEncounter ({ userData, setStage, setBattleData, }) {
 
     const [pokemonURL, setPokemonURL] = useState(null);
     const [pokemonData, setPokemonData] = useState(null);
@@ -41,23 +41,33 @@ function PokemonEncounter ({ url, userData }) {
             setPokemonData(fetchedPokemon);
         }
 
-        pickRandomPokemon(url);
-    }, [url]);
+        pickRandomPokemon(userData.chosenLocation);
+    }, [userData]);
 
     function handleReoccuringPokemon() {
         if (userData.pokemons.includes(pokemonURL)) return true;
         return false;
     }
 
+    function handleFight() {
+        setBattleData(prevState => ({
+            ...prevState,
+            opposingPokemon: pokemonURL,
+          }));
+        setIsFighting(true)
+    }
+
     function handleRetreat() {
-        console.log("RETREAT")
+        setStage("Locations")
     }
 
     return (
         <div>
             {isFighting ? (
                 <PickBattlingPokemon
-                userData={ userData }/>
+                userData = { userData }
+                setStage = {setStage}
+                setBattleData = { setBattleData }/>
             ) : (
                 <div>
                 {pokemonData ? (
@@ -74,7 +84,7 @@ function PokemonEncounter ({ url, userData }) {
                                     <h3>Are you sure you want to battle this Pokémon?</h3>
                                 </div>
                             )}
-                            <button onClick = {()=> setIsFighting(true)}>Fight</button>
+                            <button onClick = {handleFight}>Fight</button>
                             <button onClick = {handleRetreat}>Run Away</button>
                         </div>
                     ) : (
