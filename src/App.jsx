@@ -20,12 +20,6 @@ function App() {
     "opponentPokemon": "",
     "hasWon": false
   })
-
-  function setBattle()
-  {
-    setStage('Battle');
-  }
-
   function chooseStage(){
     switch(stage) {
       case 'NewGame':

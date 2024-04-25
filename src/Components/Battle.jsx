@@ -18,10 +18,6 @@ function Attack(attacker, defender, defenderSetter){
     defenderSetter(pokemon => ({...pokemon, hp: newHp}));
 }
 
-function isDead(pokemon){
-    return pokemon.stats[0].base_stat <= 0;
-}
-
 function Battle(props){
     const [ownPokemon, setOwnPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
@@ -43,7 +39,6 @@ function Battle(props){
             const _ownPokemon = await getPokemon(props.ownPokemon);
             const _opponentPokemon = await getPokemon(props.opponentPokemon);
             _ownPokemon.hp += 25;
-            console.log(_ownPokemon);
             _ownPokemon['attacker'] = _ownPokemon.speed > _opponentPokemon.speed;
             _opponentPokemon['attacker'] = _opponentPokemon.speed > _ownPokemon.speed;
 

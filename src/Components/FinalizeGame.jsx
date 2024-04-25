@@ -1,8 +1,4 @@
-import { fetchJsonData } from "../utility";
-
-
 function FinalizeGame({ userData, starterPokemonData, startGame }) {
-  console.log(starterPokemonData);
   return (
     <div className="finalize-game">
       <h2>Alright, {userData.username}!</h2>

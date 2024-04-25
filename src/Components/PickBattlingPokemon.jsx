@@ -8,8 +8,6 @@ function PickBattlingPokemon ({ userData, setBattleData, setStage }) {
 
     useEffect(() => {
         const fetchPokemonData = async () => {
-          console.log(userData);
-          console.log(userData.pokemons);
           const dataPromises = userData.pokemons.map(url => fetchJsonData(url));
           const pokemonResponses = await Promise.all(dataPromises);
           setPokemonData(pokemonResponses);

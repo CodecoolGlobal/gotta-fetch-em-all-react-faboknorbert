@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchJsonData } from '../utility';
+import '../Styles/index.css'
 
 function Locations({ setStage, setUserData }) {
   const kantoLocations = [
@@ -57,16 +58,16 @@ function Locations({ setStage, setUserData }) {
 
   return (
     <div className="locations">
-      <h2>Locations</h2>
+      <h1>Locations</h1>
       <ul>
         {locationsData.map((location, index) => (
           <li 
             key={index}
             id={locationsData[index]}
-            onClick={() => handleLocationClick(location.id)}
+            
             className="location-item"
           >
-            {location.names[1].name}
+            <button onClick={() => handleLocationClick(location.id)}>{location.names[1].name}</button>
           </li>
         ))}
       </ul>

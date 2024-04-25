@@ -13,8 +13,6 @@ function NewGame({ userData, setUserData, setStage }) {
   };
 
   function selectStarter(pokemonUrl) {
-    console.log(pokemonUrl);
-    
     fetch(pokemonUrl)
       .then((response) => response.json())
       .then(async (data) => {
@@ -30,7 +28,6 @@ function NewGame({ userData, setUserData, setStage }) {
 
   const startGame = () => {
     setStage("Locations");
-    console.log(userData);
   };
 
   return (
