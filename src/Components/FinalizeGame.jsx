@@ -1,3 +1,4 @@
+import '../Styles/index.css'
 function FinalizeGame({ userData, starterPokemonData, startGame }) {
   return (
     <div className="finalize-game">

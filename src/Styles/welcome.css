@@ -11,6 +11,12 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
+  background-image: url('./pok-back.jpg');
+  background-size: cover;
+  
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   background-color: #242424;
 
   font-synthesis: none;
@@ -19,8 +25,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.welcome h1 {
-  font-size: 24px;
+.welcome {
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.new-game {
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 label {
@@ -62,25 +80,84 @@ button {
 
 .card {
   border: 1px solid #ccc;
-  background-color: #242424;
+  background:none;
   padding: 20px;
   text-align: center;
   cursor: pointer;
 }
 
-
-
-.bulbasaur:hover {
-  background-color: green;
+.normal:hover {
+  background-color: rgb(159, 156, 156);
 }
 
-.charmander:hover {
+.fighting:hover {
+  background-color: rgb(223, 105, 66);
+}
+
+.flying:hover {
+  background-color: rgb(71, 133, 172);
+}
+
+.poison:hover {
+  background-color: rgb(163, 50, 211);
+}
+
+.ground:hover {
+  background-color: rgb(139, 118, 27);
+}
+
+.rock:hover {
+  background-color: rgb(87, 74, 10);
+}
+
+.bug:hover {
+  background-color: rgb(9, 104, 14);
+}
+
+.ghost:hover {
+  background-color: rgb(90, 13, 105);
+}
+
+.steel:hover {
+  background-color: rgb(78, 95, 112);
+}
+
+.fire:hover {
   background-color: rgb(225, 28, 31);
 }
 
-.squirtle:hover {
+.water:hover {
   background-color: rgb(29, 132, 241);
 }
+
+.grass:hover {
+  background-color: rgb(5, 144, 5);
+}
+.electric:hover {
+  background-color: rgb(224, 238, 27);
+}
+
+.psychic:hover {
+  background-color: rgb(216, 18, 216);
+}
+
+.ice:hover {
+  background-color: rgb(28, 205, 225);
+}
+
+.dragon:hover {
+  background-color: rgb(207, 70, 28);
+}
+
+.dark:hover {
+  background-color: rgb(57, 55, 55);
+}
+
+.fairy:hover {
+  background-color: rgb(212, 128, 239);
+}
+
+
 
 .p{
   text-align: center;
@@ -106,6 +183,6 @@ ul li {
 }
 
 .pokemon-icon {
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
 }

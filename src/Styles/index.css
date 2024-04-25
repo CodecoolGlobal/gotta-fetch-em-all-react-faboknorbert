@@ -66,3 +66,119 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.normal:hover {
+  background-color: rgb(159, 156, 156);
+}
+
+.fighting:hover {
+  background-color: rgb(223, 105, 66);
+}
+
+.flying:hover {
+  background-color: rgb(71, 133, 172);
+}
+
+.poison:hover {
+  background-color: rgb(163, 50, 211);
+}
+
+.ground:hover {
+  background-color: rgb(139, 118, 27);
+}
+
+.rock:hover {
+  background-color: rgb(87, 74, 10);
+}
+
+.bug:hover {
+  background-color: rgb(9, 104, 14);
+}
+
+.ghost:hover {
+  background-color: rgb(90, 13, 105);
+}
+
+.steel:hover {
+  background-color: rgb(78, 95, 112);
+}
+
+.fire:hover {
+  background-color: rgb(184, 38, 41);
+}
+
+.water:hover {
+  background-color: rgb(29, 132, 241);
+}
+
+.grass:hover {
+  background-color: rgb(5, 144, 5);
+}
+.electric:hover {
+  background-color: rgb(196, 206, 65);
+}
+
+.psychic:hover {
+  background-color: rgb(216, 18, 216);
+}
+
+.ice:hover {
+  background-color: rgb(28, 205, 225);
+}
+
+.dragon:hover {
+  background-color: rgb(207, 70, 28);
+}
+
+.dark:hover {
+  background-color: rgb(57, 55, 55);
+}
+
+.fairy:hover {
+  background-color: rgb(212, 128, 239);
+}
+
+.locations-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.location-item {
+  flex: 0 0 calc(25% - 10px);
+  margin: 5px;
+  font-size: large;
+}
+
+.result img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.encounter img {
+  width: 100%;
+  height: auto;
+  max-width: 350px;
+  margin-bottom: 10px;
+}
+
+.cardContainer img {
+  width: 100%;
+  height: auto;
+  max-width: 350px;
+  margin-bottom: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 100px 200px 200px rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke: 1px #000;
+}
+
+label{
+  display: block;
+  margin-top: 20px;
+  font-size:large;
+  text-shadow: 10px 3px 5px rgba(0, 0, 0, 0.5);
+}

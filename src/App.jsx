@@ -31,6 +31,7 @@ function App() {
 
       case 'Locations':
         return <Locations
+        userData={userData}
         setUserData={setUserData}
         setStage={setStage}
       />
@@ -48,6 +49,7 @@ function App() {
 
       case 'Battle':
         return <Battle
+        userData = {userData}
         ownPokemon = {battleData.ownPokemon}
         opponentPokemon = {battleData.opponentPokemon}
         setUserData = {setUserData}
@@ -57,6 +59,7 @@ function App() {
 
       case 'Results':
         return <Results
+        userData = {userData}
         ownPokemonUrl = {battleData.ownPokemon}
         opponentPokemonUrl = {battleData.opponentPokemon}
         hasWin = {battleData.hasWon}
