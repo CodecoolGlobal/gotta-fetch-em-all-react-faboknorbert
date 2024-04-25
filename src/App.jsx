@@ -2,6 +2,8 @@ import { useState } from 'react';
 import NewGame from './Components/NewGame.jsx';
 import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
+
+import './Styles/App.css'
 import PokemonEncounter from './components/PokemonEncounter';
 import './Styles/App.css'
 
