@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import './Styles/welcome.css';
-import Welcome from './components/Welcome';
-import StarterPokemons from './components/StarterPokemons';
+import Welcome from './Components/Welcome.jsx'
+import StarterPokemons from './Components/StarterPokemons.jsx';
 import Battle from './Components/Battle.jsx'
-import './App.css'
-import PokemonEncounter from './components/PokemonEncounter';
+import './Styles/App.css'
+import PokemonEncounter from './Components/PokemonEncounter.jsx';
 
 function App() {
   const [showStarterPokemon, setShowStarterPokemon] = useState(false);
   const [userData, setUserData] = useState({
     "username": "",
     "starterOptions": ["https://pokeapi.co/api/v2/pokemon/1", "https://pokeapi.co/api/v2/pokemon/4", "https://pokeapi.co/api/v2/pokemon/7"],
-    "pokemons": []
+    "pokemons": ["https://pokeapi.co/api/v2/pokemon/ditto"]
   });
 
   
@@ -52,7 +52,7 @@ function App() {
           handleNameSubmit={handleNameSubmit}
         />
       )}
-    </div>
+    </div> 
   );
 }
 
