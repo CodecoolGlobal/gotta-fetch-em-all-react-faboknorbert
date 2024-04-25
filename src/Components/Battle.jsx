@@ -32,7 +32,7 @@ function Battle(props){
             const pokemon = await fetchJsonData(pokemonUrl);
             return {
                 name: pokemon.name,
-                hp: pokemon.stats[0].base_stat,
+                hp: pokemon.stats[0].base_stat + 25,
                 attack: pokemon.stats[1].base_stat,
                 defend: pokemon.stats[2].base_stat,
                 speed:  pokemon.stats[5].base_stat,
@@ -57,13 +57,14 @@ function Battle(props){
     useEffect(() => {
         if(ownPokemon){
             if(ownPokemon.hp <= 0){
-                console.log(opponentPokemon.name, 'wins!')
-                props.setStage('Locations')
+                props.setBattleData(prevData => ({...prevData, hasWon: false}))
+                props.setStage('Results')
             }
     
             if(opponentPokemon.hp <= 0){
-                console.log(ownPokemon.name, 'wins!')
-                props.setStage('Locations')
+                props.setUserData(prevData => ({...prevData, pokemons:[...prevData.pokemons, props.opponentPokemon]}));
+                props.setBattleData(prevData => ({...prevData, hasWon: true}))
+                props.setStage('Results')
             }
         }
         

@@ -21,7 +21,7 @@ function PickBattlingPokemon ({ userData, setBattleData, setStage }) {
       function handleDecision(pokemonURL) {
         setBattleData(prevState => ({
           ...prevState,
-          pickedPokemon: pokemonURL,
+          ownPokemon: pokemonURL,
         }));
         setStage("Battle")
       }
