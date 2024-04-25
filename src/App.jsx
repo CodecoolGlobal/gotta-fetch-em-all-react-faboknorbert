@@ -40,6 +40,7 @@ function App() {
   }
 
   return (
+    /*
     <div className='App'>
       {showStarterPokemon ? (
         <StarterPokemons 
@@ -53,6 +54,10 @@ function App() {
         />
       )}
     </div> 
+    */
+   <PokemonEncounter
+   url = "https://pokeapi.co/api/v2/location/2/"
+   userData={userData}/>
   );
 }
 

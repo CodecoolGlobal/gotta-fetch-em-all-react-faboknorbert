@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import { fetchJsonData } from "../utility";
-import { PokemonCard } from './PokemonCard';
-import PickBattlingPokemon from "./PickBattlingPokemon";
+import { PokemonCard } from './PokemonCard.jsx';
+import PickBattlingPokemon from "./PickBattlingPokemon.jsx";
 
 async function fetchAreaDatas (url) {
     const locationData = await fetchJsonData(url);
