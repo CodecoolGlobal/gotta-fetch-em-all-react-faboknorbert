@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchJsonData } from '../utility';
 import { PokemonCard } from './PokemonCard';
 
-function StarterPokemons({ userData, selectStarter, starterPokemonData, setstarterPokemonData }) {
+function StarterPokemons({ userData, selectStarter, starterPokemonData, setStarterPokemonData }) {
   const [isLoading, setIsLoading] = useState(true);
   const starterOptions = [
     "https://pokeapi.co/api/v2/pokemon/1",
@@ -14,7 +14,7 @@ function StarterPokemons({ userData, selectStarter, starterPokemonData, setstart
     const fetchPokemonData = async () => {
       const dataPromises = starterOptions.map(url => fetchJsonData(url));
       const pokemonResponses = await Promise.all(dataPromises);
-      setstarterPokemonData(pokemonResponses);
+      setStarterPokemonData(pokemonResponses);
       setIsLoading(false);
     };
 

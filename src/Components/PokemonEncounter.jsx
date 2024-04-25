@@ -53,7 +53,7 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
     function handleFight() {
         setBattleData(prevState => ({
             ...prevState,
-            opposingPokemon: pokemonURL,
+            opponentPokemon: pokemonURL,
           }));
         setIsFighting(true)
     }

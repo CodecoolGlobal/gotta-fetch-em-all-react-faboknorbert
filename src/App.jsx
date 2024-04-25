@@ -5,6 +5,7 @@ import Battle from './Components/Battle.jsx'
 import PokemonEncounter from './Components/PokemonEncounter.jsx';
 
 import './Styles/App.css'
+import { Results } from './Components/Results.jsx';
 
 function App() {
   const [userData, setUserData] = useState({
@@ -14,8 +15,8 @@ function App() {
   });
   const [stage, setStage] = useState("NewGame");
   const [battleData, setBattleData] = useState({
-    "pickedPokemon": "",
-    "opposingPokemon": "",
+    "ownPokemon": "",
+    "opponentPokemon": "",
     "hasWon": false
   })
 
@@ -48,9 +49,20 @@ function App() {
 
       case 'Battle':
         return <Battle
-        ownPokemon = {battleData.pickedPokemon}
-        opponentPokemon = {battleData.opposingPokemon}
+        ownPokemon = {battleData.ownPokemon}
+        opponentPokemon = {battleData.opponentPokemon}
+        setUserData = {setUserData}
+        setBattleData = {setBattleData}
+        setStage = {setStage}
       />
+
+      case 'Results':
+        return <Results
+        ownPokemonUrl = {battleData.ownPokemon}
+        opponentPokemonUrl = {battleData.opponentPokemon}
+        hasWin = {battleData.hasWon}
+        setStage = {setStage}
+        />
     } 
   }
 
