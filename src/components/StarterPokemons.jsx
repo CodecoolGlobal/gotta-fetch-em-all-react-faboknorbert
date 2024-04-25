@@ -18,7 +18,7 @@ function StarterPokemons({ userData, selectStarter }) {
   }, [userData]);
   return (
     <>
-      <h2>{userData.username}, choose your first Pokémon</h2>
+      <h2>Welcome {userData.username}! Choose your first Pokémon</h2>
       <div className="pokemon-list">
         {pokemonData.map((pokemon, index) => (
           <button
@@ -27,7 +27,7 @@ function StarterPokemons({ userData, selectStarter }) {
             onClick={() => selectStarter(userData.starterOptions[index])}>
             <PokemonCard
               image={pokemon.sprites.other.home.front_default}
-              name={pokemon.name}
+              name={pokemon.name.toUpperCase()}
             />
           </button>
         ))}
