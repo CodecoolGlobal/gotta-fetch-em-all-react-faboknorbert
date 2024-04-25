@@ -2,9 +2,9 @@ import { useState } from 'react';
 import NewGame from './Components/NewGame.jsx';
 import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
+import PokemonEncounter from './Components/PokemonEncounter.jsx';
 
 import './Styles/App.css'
-import PokemonEncounter from './components/PokemonEncounter';
 
 function App() {
   const [userData, setUserData] = useState({
@@ -30,6 +30,9 @@ function App() {
           setUserData={setUserData}
         />
       )}
+      <PokemonEncounter
+      url = "https://pokeapi.co/api/v2/location/2/"
+      userData={userData}/>
     </div> 
   );
 }
