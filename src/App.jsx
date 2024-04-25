@@ -13,7 +13,7 @@ function App() {
     "pokemons": [],
     "chosenLocation": ""
   });
-  const [stage, setStage] = useState("Locations");
+  const [stage, setStage] = useState("NewGame");
   const [battleData, setBattleData] = useState({
     "pickedPokemon": "",
     "opposingPokemon": "",
