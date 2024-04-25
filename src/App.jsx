@@ -2,8 +2,9 @@ import { useState } from 'react';
 import NewGame from './Components/NewGame.jsx';
 import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
+import PokemonEncounter from './Components/PokemonEncounter.jsx';
+
 import './Styles/App.css'
-import PokemonEncounter from './Components/PokemonEncounter';
 
 function App() {
   const [userData, setUserData] = useState({
@@ -11,7 +12,12 @@ function App() {
     "pokemons": [],
     "chosenLocation": ""
   });
-  const [stage, setStage] = useState("Battle");
+  const [stage, setStage] = useState("NewGame");
+  const [battleData, setBattleData] = useState({
+    "pickedPokemon": "",
+    "opposingPokemon": "",
+    "hasWon": false
+  })
 
   function setBattle()
   {
@@ -34,17 +40,16 @@ function App() {
       />
       
       case 'randomEncounter':
-      //   return <PokemonEncounter
-        
-      // />
-      {setBattle}
-      break;
+        return <PokemonEncounter
+        userData = {userData}
+        setStage = {setStage}
+        setBattleData = {setBattleData}
+        />
 
       case 'Battle':
         return <Battle
-        ownPokemon='https://pokeapi.co/api/v2/pokemon/pikachu'
-        opponentPokemon='https://pokeapi.co/api/v2/pokemon/ditto'
-        setStage={setStage}
+        ownPokemon = {battleData.pickedPokemon}
+        opponentPokemon = {battleData.opposingPokemon}
       />
     } 
   }
