@@ -11,24 +11,46 @@ function App() {
     "pokemons": [],
     "chosenLocation": ""
   });
-  const [stage, setStage] = useState("NewGame");
+  const [stage, setStage] = useState("Battle");
 
-  return (
-    <div className='App'>
-      {stage === "NewGame" && (
-        <NewGame 
+  function setBattle()
+  {
+    setStage('Battle');
+  }
+
+  function chooseStage(){
+    switch(stage) {
+      case 'NewGame':
+        return <NewGame 
           userData={userData}
           setUserData={setUserData}
           setStage={setStage}
         />
-      )}
 
-      {stage === "Locations" && (
-        <Locations
-          setStage={setStage}
-          setUserData={setUserData}
-        />
-      )}
+      case 'Locations':
+        return <Locations
+        setUserData={setUserData}
+        setStage={setStage}
+      />
+      
+      case 'randomEncounter':
+      //   return <PokemonEncounter
+        
+      // />
+      {setBattle}
+      break;
+
+      case 'Battle':
+        return <Battle
+        ownPokemon='https://pokeapi.co/api/v2/pokemon/pikachu'
+        opponentPokemon='https://pokeapi.co/api/v2/pokemon/ditto'
+      />
+    } 
+  }
+
+  return (
+    <div className='App'>
+      {chooseStage()}
     </div>
   );
 }
