@@ -4,18 +4,9 @@ import { PokemonCard } from './PokemonCard.jsx';
 import '../Styles/Battle.css'
 import { BattlePokemonCard } from './BattlePokemonCard.jsx';
 
-function ProcessBattle(ownPokemon, ownSetter, opponentPokemon, opponentSetter, setPageState){ 
+function ProcessBattle(ownPokemon, ownSetter, opponentPokemon, opponentSetter){ 
     Attack(ownPokemon, opponentPokemon, opponentSetter);
-    if(opponentPokemon.hp <= 0){
-        console.log(ownPokemon.name, 'wins!')
-        setPageState('locations')
-    }
-    
     Attack(opponentPokemon, ownPokemon, ownSetter);
-    if(ownPokemon.hp <= 0){
-        console.log(opponentPokemon.name, 'wins!')
-        setPageState('locations')
-    }
 }
 
 function Attack(attacker, defender, defenderSetter){
@@ -63,7 +54,20 @@ function Battle(props){
         getPokemons();
     }, []);
 
+    useEffect(() => {
+        if(ownPokemon){
+            if(ownPokemon.hp <= 0){
+                console.log(opponentPokemon.name, 'wins!')
+                props.setStage('Locations')
+            }
     
+            if(opponentPokemon.hp <= 0){
+                console.log(ownPokemon.name, 'wins!')
+                props.setStage('Locations')
+            }
+        }
+        
+    }, [ownPokemon, opponentPokemon]);
 
     return (
         <>
@@ -72,7 +76,7 @@ function Battle(props){
                 {ownPokemon ? (<BattlePokemonCard name={ownPokemon.name} hp={ownPokemon.hp} image={ownPokemon.sprite}/>) : <p>Loading...</p>}
                 {opponentPokemon ? (<BattlePokemonCard name={opponentPokemon.name} hp={opponentPokemon.hp} image={opponentPokemon.sprite}/>) : <p>Loading...</p>}
             </div>
-            <button onClick={() => ProcessBattle(ownPokemon, setOwnPokemon, opponentPokemon, setOpponentPokemon, props.setStage)}>Attack!</button>
+            <button onClick={() => ProcessBattle(ownPokemon, setOwnPokemon, opponentPokemon, setOpponentPokemon)}>Attack!</button>
         </>
     );
 }

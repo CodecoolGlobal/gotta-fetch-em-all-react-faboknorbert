@@ -44,6 +44,7 @@ function App() {
         return <Battle
         ownPokemon='https://pokeapi.co/api/v2/pokemon/pikachu'
         opponentPokemon='https://pokeapi.co/api/v2/pokemon/ditto'
+        setStage={setStage}
       />
     } 
   }
