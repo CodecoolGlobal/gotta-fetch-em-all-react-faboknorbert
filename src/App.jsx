@@ -12,7 +12,7 @@ function App() {
     "pokemons": [],
     "chosenLocation": ""
   });
-  const [stage, setStage] = useState("Battle");
+  const [stage, setStage] = useState("NewGame");
   const [battleData, setBattleData] = useState({
     "pickedPokemon": "",
     "opposingPokemon": "",
@@ -42,9 +42,7 @@ function App() {
       case 'randomEncounter':
         return <PokemonEncounter
         userData = {userData}
-        setUserData = {setUserData}
         setStage = {setStage}
-        battleData = {battleData}
         setBattleData = {setBattleData}
         />
 

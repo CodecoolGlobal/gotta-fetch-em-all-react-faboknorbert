@@ -43,7 +43,7 @@ function Locations({ setStage, setUserData }) {
       ...prevState,
       chosenLocation: `https://pokeapi.co/api/v2/location/${id}`
     }));
-    setStage('Battle')//'randomEncounter');
+    setStage('randomEncounter')//'randomEncounter');
   };
 
   return (
