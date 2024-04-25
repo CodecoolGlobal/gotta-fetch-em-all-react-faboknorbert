@@ -34,7 +34,7 @@ function PickBattlingPokemon ({ userData, setBattleData, setStage }) {
               <button
                 key={index}
                 className={`card ${pokemon.name.toLowerCase()}`}
-                onClick={() => handleDecision(pokemonData[index])}>
+                onClick={() => handleDecision(userData.pokemons[index])}>
                 <PokemonCard
                   image={pokemon.sprites.other.home.front_default}
                   name={pokemon.name}

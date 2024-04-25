@@ -24,11 +24,21 @@ function Locations({ setStage, setUserData }) {
     "https://pokeapi.co/api/v2/location/158/",
     "https://pokeapi.co/api/v2/location/504/"
   ];
-
   const [locationsData, setLocationsData] = useState([]);
 
   useEffect(() => {
+
+    /*async function fetchLocationURLS () {
+      const locationsArray = []
+      const data = await fetchJsonData("https://pokeapi.co/api/v2/location");
+      data.results.forEach((location) => {
+        locationsArray.push(location.url)
+      })
+      return locationsArray;
+    } */
+
     const fetchLocations = async () => {
+      const kantoLocations = await fetchLocationURLS()
       const dataPromises = kantoLocations.map(url => fetchJsonData(url));
       const responses = await Promise.all(dataPromises);
       const locations = responses;
@@ -53,7 +63,7 @@ function Locations({ setStage, setUserData }) {
         {locationsData.map((location, index) => (
           <li 
             key={index}
-            id={kantoLocations[index]}
+            id={locationsData[index]}
             onClick={() => handleLocationClick(location.id)}
             className="location-item"
           >
