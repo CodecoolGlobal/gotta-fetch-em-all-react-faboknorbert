@@ -2,29 +2,38 @@ import { useState, useEffect } from 'react';
 import { fetchJsonData } from '../utility';
 import { PokemonCard } from './PokemonCard';
 
-function StarterPokemons({ userData, selectStarter }) {
-  const [pokemonData, setPokemonData] = useState([]);
+function StarterPokemons({ userData, selectStarter, starterPokemonData, setstarterPokemonData }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const starterOptions = [
+    "https://pokeapi.co/api/v2/pokemon/1",
+    "https://pokeapi.co/api/v2/pokemon/4",
+    "https://pokeapi.co/api/v2/pokemon/7"
+  ]
 
   useEffect(() => {
     const fetchPokemonData = async () => {
-      console.log(userData);
-      console.log(userData.starterOptions);
-      const dataPromises = userData.starterOptions.map(url => fetchJsonData(url));
+      const dataPromises = starterOptions.map(url => fetchJsonData(url));
       const pokemonResponses = await Promise.all(dataPromises);
-      setPokemonData(pokemonResponses);
+      setstarterPokemonData(pokemonResponses);
+      setIsLoading(false);
     };
 
     fetchPokemonData();
-  }, [userData]);
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <h2>Welcome {userData.username}! Choose your first Pokémon</h2>
       <div className="pokemon-list">
-        {pokemonData.map((pokemon, index) => (
+        {starterPokemonData.map((pokemon, index) => (
           <button
             key={index}
             className={`card ${pokemon.name.toLowerCase()}`}
-            onClick={() => selectStarter(userData.starterOptions[index])}>
+            onClick={() => selectStarter(starterOptions[index])}>
             <PokemonCard
               image={pokemon.sprites.other.home.front_default}
               name={pokemon.name.toUpperCase()}
