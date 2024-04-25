@@ -46,7 +46,7 @@ export function Results({ownPokemonUrl, opponentPokemonUrl, hasWin, setStage}){
         return (
             <div>
                 <h1>Congratulations, You Won!</h1>
-                <h2>From now, you can use {opponentPokemon ? (opponentPokemon.name) : ('Loading...')} in your battles!</h2>
+                <h2>From now, you can use {opponentPokemon ? (opponentPokemon.name.toUpperCase()) : ('Loading...')} in your battles!</h2>
                 {opponentPokemon ? (<PokemonCard name={opponentPokemon.name} image={opponentPokemon.sprite}/>) : (<p>Loading...</p>)}
             </div>
         );
