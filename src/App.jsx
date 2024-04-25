@@ -15,6 +15,7 @@ function App() {
   const [stage, setStage] = useState("NewGame");
 
   return (
+    /*
     <div className='App'>
       {stage === "NewGame" && (
         <NewGame 
@@ -34,6 +35,10 @@ function App() {
       url = "https://pokeapi.co/api/v2/location/2/"
       userData={userData}/>
     </div> 
+    */
+   <PokemonEncounter
+   url = "https://pokeapi.co/api/v2/location/2/"
+   userData={userData}/>
   );
 }
 
