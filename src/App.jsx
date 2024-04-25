@@ -7,8 +7,8 @@ import './Styles/App.css'
 function App() {
   const [userData, setUserData] = useState({
     "username": "",
-    "starterOptions": ["https://pokeapi.co/api/v2/pokemon/1", "https://pokeapi.co/api/v2/pokemon/4", "https://pokeapi.co/api/v2/pokemon/7"],
-    "pokemons": []
+    "pokemons": [],
+    "chosenLocation": ""
   });
   const [stage, setStage] = useState("NewGame");
 

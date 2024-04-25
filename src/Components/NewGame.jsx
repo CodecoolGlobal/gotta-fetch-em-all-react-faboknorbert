@@ -6,28 +6,30 @@ import FinalizeGame from './FinalizeGame';
 
 function NewGame({ userData, setUserData, setStage }) {
   const [showFinalizeGame, setShowFinalizeGame] = useState(false);
+  const [starterPokemonData, setstarterPokemonData] = useState([]);
 
   const handleNameSubmit = () => {
     setShowFinalizeGame(true);
   };
 
   function selectStarter(pokemonUrl) {
+    console.log(pokemonUrl);
     fetch(pokemonUrl)
       .then((response) => response.json())
       .then(async (data) => {
         
         setUserData(prevState => ({
           ...prevState,
-          selectedStarter: data,
           pokemons: [...prevState.pokemons, pokemonUrl]
         }));
-
+        setstarterPokemonData(data)
         handleNameSubmit();
       });
   }
 
   const startGame = () => {
     setStage("Locations");
+    console.log(userData);
   };
 
   return (
@@ -38,15 +40,18 @@ function NewGame({ userData, setUserData, setStage }) {
           handleUsernameChange={(e) => setUserData(prevState => ({ ...prevState, username: e.target.value }))}
           handleNameSubmit={handleNameSubmit}
         />
-      ) : userData.selectedStarter ? (
+      ) : userData.pokemons.length ? (
         <FinalizeGame
           userData={userData}
+          starterPokemonData={starterPokemonData}
           startGame={startGame}
         />
       ) : (
         <StarterPokemons 
           selectStarter={selectStarter}
           userData={userData}
+          starterPokemonData={starterPokemonData}
+          setstarterPokemonData={setstarterPokemonData}
         />
       )}
     </div>

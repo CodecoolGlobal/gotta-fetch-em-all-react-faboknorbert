@@ -31,7 +31,7 @@ function Locations({ setStage, setUserData }) {
     const fetchLocations = async () => {
       const dataPromises = kantoLocations.map(url => fetchJsonData(url));
       const responses = await Promise.all(dataPromises);
-      const locations = responses;//.map(response => response.names[1].name);
+      const locations = responses;
       setLocationsData(locations);
     };
 
