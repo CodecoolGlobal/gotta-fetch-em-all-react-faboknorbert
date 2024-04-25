@@ -3,7 +3,7 @@ import NewGame from './Components/NewGame.jsx';
 import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
 
-import './Styles/App.css
+import './Styles/App.css'
 import PokemonEncounter from './components/PokemonEncounter';
 
 function App() {
