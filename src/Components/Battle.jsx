@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {fetchJsonData, getRandomArbitrary} from '../utility.js'
 import { PokemonCard } from './PokemonCard.jsx';
 import '../Styles/Battle.css'
+import { BattlePokemonCard } from './BattlePokemonCard.jsx';
 
 function ProcessBattle(ownPokemon, ownSetter, opponentPokemon, opponentSetter, setPageState){ 
     Attack(ownPokemon, opponentPokemon, opponentSetter);
@@ -9,6 +10,7 @@ function ProcessBattle(ownPokemon, ownSetter, opponentPokemon, opponentSetter, s
         console.log(ownPokemon.name, 'wins!')
         setPageState('locations')
     }
+    
     Attack(opponentPokemon, ownPokemon, ownSetter);
     if(ownPokemon.hp <= 0){
         console.log(opponentPokemon.name, 'wins!')
@@ -67,8 +69,8 @@ function Battle(props){
         <>
             <h1>BATTLE</h1>
             <div className='cardContainer'>
-                {ownPokemon ? (<PokemonCard name={ownPokemon.name} hp={ownPokemon.hp} image={ownPokemon.sprite}/>) : <p>Loading...</p>}
-                {opponentPokemon ? (<PokemonCard name={opponentPokemon.name} hp={opponentPokemon.hp} image={opponentPokemon.sprite}/>) : <p>Loading...</p>}
+                {ownPokemon ? (<BattlePokemonCard name={ownPokemon.name} hp={ownPokemon.hp} image={ownPokemon.sprite}/>) : <p>Loading...</p>}
+                {opponentPokemon ? (<BattlePokemonCard name={opponentPokemon.name} hp={opponentPokemon.hp} image={opponentPokemon.sprite}/>) : <p>Loading...</p>}
             </div>
             <button onClick={() => ProcessBattle(ownPokemon, setOwnPokemon, opponentPokemon, setOpponentPokemon, props.setStage)}>Attack!</button>
         </>
