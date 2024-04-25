@@ -1,55 +1,32 @@
 import { useState } from 'react';
-import './Styles/welcome.css';
-import Welcome from './components/Welcome';
-import StarterPokemons from './components/StarterPokemons';
+import NewGame from './Components/NewGame.jsx';
+import Locations from './Components/Locations.jsx';
 import Battle from './Components/Battle.jsx'
-import './Styles/App.css
 import PokemonEncounter from './components/PokemonEncounter';
+import './Styles/App.css'
 
 function App() {
-  const [showStarterPokemon, setShowStarterPokemon] = useState(false);
   const [userData, setUserData] = useState({
     "username": "",
-    "starterOptions": ["https://pokeapi.co/api/v2/pokemon/1", "https://pokeapi.co/api/v2/pokemon/4", "https://pokeapi.co/api/v2/pokemon/7"],
-    "pokemons": []
+    "pokemons": [],
+    "chosenLocation": ""
   });
-
-  
-  const handleNameSubmit = () => {
-    setShowStarterPokemon(true);
-    
-    setUserData(prevState => ({
-      ...prevState,
-      username: userData.username,
-    }));
-  };
-
-  function selectStarter(pokemonUrl) {
-    fetch(pokemonUrl)
-      .then((response) => response.json())
-      .then(async (data) => {
-        const pokemonName = data.name;
-        alert(`Welcome, ${userData.username}! You've chosen ${pokemonName.toUpperCase()} as your starter Pokémon!`);
-
-        setUserData(prevState => ({
-          ...prevState,
-          selectedStarter: pokemonName,
-          pokemons: [...prevState.pokemons, pokemonUrl]
-        }));
-      });
-  }
+  const [stage, setStage] = useState("NewGame");
 
   return (
     <div className='App'>
-      {showStarterPokemon ? (
-        <StarterPokemons 
-          selectStarter={selectStarter}
+      {stage === "NewGame" && (
+        <NewGame 
           userData={userData}
-        />
-      ) : (
-        <Welcome
           setUserData={setUserData}
-          handleNameSubmit={handleNameSubmit}
+          setStage={setStage}
+        />
+      )}
+
+      {stage === "Locations" && (
+        <Locations
+          setStage={setStage}
+          setUserData={setUserData}
         />
       )}
     </div>
