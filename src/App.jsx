@@ -12,6 +12,11 @@ function App() {
     "chosenLocation": ""
   });
   const [stage, setStage] = useState("Battle");
+  const [battleData, setBattleData] = useState({
+    "pickedPokemon": "",
+    "opposingPokemon": "",
+    "hasWon": false
+  })
 
   function setBattle()
   {
@@ -34,16 +39,18 @@ function App() {
       />
       
       case 'randomEncounter':
-      //   return <PokemonEncounter
-        
-      // />
-      {setBattle}
-      break;
+        return <PokemonEncounter
+        userData = {userData}
+        setUserData = {setUserData}
+        setStage = {setStage}
+        battleData = {battleData}
+        setBattleData = {setBattleData}
+        />
 
       case 'Battle':
         return <Battle
-        ownPokemon='https://pokeapi.co/api/v2/pokemon/pikachu'
-        opponentPokemon='https://pokeapi.co/api/v2/pokemon/ditto'
+        ownPokemon = {battleData.pickedPokemon}
+        opponentPokemon = {battleData.opposingPokemon}
       />
     } 
   }
