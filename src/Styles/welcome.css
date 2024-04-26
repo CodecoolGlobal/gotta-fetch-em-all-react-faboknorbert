@@ -52,13 +52,15 @@ input[type="text"] {
 }
 
 button {
-  padding: 10px 20px;
   margin-inline: 40px;
   margin-top: 20px;
-  background-color: #007bff;
   color: white;
-  border: none;
-  cursor: pointer;
+}
+
+button:disabled {
+  background-color: gray;
+  color: rgb(176, 171, 171);
+  cursor: not-allowed;
 }
 
 .starter-pokémon {
