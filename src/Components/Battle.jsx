@@ -52,26 +52,39 @@ function Battle(props){
         getPokemons();
     }, []);
 
-    useEffect(() => {
+    function executeRound() {
+        let ended = false;
         if(ownPokemon){
             if(ownPokemon.hp <= 0){
                 props.setBattleData(prevData => ({...prevData, hasWon: false}))
                 props.setStage('Results')
+                ended = true;
             }
     
             if(opponentPokemon.hp <= 0){
+                ended = true;
                 if(props.userData.pokemons.includes(props.opponentPokemon)){
                     props.setBattleData(prevData => ({...prevData, hasWon: true}));
                     props.setStage('Results');
                 } else{
-                props.setUserData(prevData => ({...prevData, pokemons:[...prevData.pokemons, props.opponentPokemon]}));
-                props.setBattleData(prevData => ({...prevData, hasWon: true}));
-                props.setStage('Results');
+                    props.setUserData(prevData => ({...prevData, pokemons:[...prevData.pokemons, props.opponentPokemon]}));
+                    props.setBattleData(prevData => ({...prevData, hasWon: true}));
+                    props.setStage('Results');
                 }
             }
         }
-        
-    }, [ownPokemon, opponentPokemon]);
+        if (!ended) {
+            setTimeout(() => {
+                if (ownPokemon && opponentPokemon) {
+                    ProcessBattle(ownPokemon, setOwnPokemon, opponentPokemon, setOpponentPokemon)
+                }
+            }, 1000);
+        }
+    }   
+
+    useEffect(() => {
+        executeRound();
+    }, [ownPokemon?.hp, opponentPokemon?.hp]);
 
     return (
         <>
@@ -80,7 +93,9 @@ function Battle(props){
                 {ownPokemon ? (<BattlePokemonCard name={ownPokemon.name} hp={ownPokemon.hp} image={ownPokemon.sprite}/>) : <p>Loading...</p>}
                 {opponentPokemon ? (<BattlePokemonCard name={opponentPokemon.name} hp={opponentPokemon.hp} image={opponentPokemon.sprite}/>) : <p>Loading...</p>}
             </div>
-            <button onClick={() => ProcessBattle(ownPokemon, setOwnPokemon, opponentPokemon, setOpponentPokemon)}>Attack!</button>
+            {/* <button onClick={() => {
+                executeRound();
+            }}>Start Fight</button> */}
         </>
     );
 }
