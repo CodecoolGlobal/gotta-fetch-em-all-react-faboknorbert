@@ -62,6 +62,21 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
         setStage("Locations")
     }
 
+    function Encounter() {
+        return <div className="encounter">
+            <PokemonCard
+            image={pokemonData.sprites.other.home.front_default}
+            name={pokemonData.name}/>
+            {isReoccuringPokemon() ? (
+                <h2>Looks like we already caught this Pokémon, do you still wish to fight?</h2>
+            ) : (
+                <h2>Are you sure you want to battle this Pokémon?</h2>
+            )}
+            <button onClick = {handleFight}>Fight</button>
+            <button onClick = {handleRetreat}>Run Away</button>
+        </div>
+    }
+
     return (
         <>
             {isFighting ? (
@@ -70,28 +85,7 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
                 setStage = {setStage}
                 setBattleData = { setBattleData }/>
             ) : (
-                <>
-                {pokemonData ? (
-                        <div className="encounter">
-                            <PokemonCard
-                            image={pokemonData.sprites.other.home.front_default}
-                            name={pokemonData.name}/>
-                            {isReoccuringPokemon() ? (
-                                <>
-                                    <h2>Looks like we already caught this Pokémon, do you still wish to fight?</h2>
-                                </>
-                            ) : (
-                                <>
-                                    <h2>Are you sure you want to battle this Pokémon?</h2>
-                                </>
-                            )}
-                            <button onClick = {handleFight}>Fight</button>
-                            <button onClick = {handleRetreat}>Run Away</button>
-                        </div>
-                    ) : (
-                        <h2>Ambushed!</h2>
-                    )}
-                </>
+                pokemonData ? (<Encounter/>) : (<h2>Ambushed!</h2>)
             )} 
         </>
     )

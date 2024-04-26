@@ -4,7 +4,7 @@ import Welcome from './Welcome';
 import StarterPokemons from './StarterPokemons';
 import FinalizeGame from './FinalizeGame';
 
-function NewGame({ userData, setUserData, setStage }) {
+function NewGame({ userData, onChoosePokemon, onSetUsername, onGameStarted }) {
   const [showFinalizeGame, setShowFinalizeGame] = useState(false);
   const [starterPokemonData, setStarterPokemonData] = useState([]);
 
@@ -17,17 +17,18 @@ function NewGame({ userData, setUserData, setStage }) {
       .then((response) => response.json())
       .then(async (data) => {
         
-        setUserData(prevState => ({
-          ...prevState,
-          pokemons: [...prevState.pokemons, pokemonUrl]
-        }));
+        // setUserData(prevState => ({
+        //   ...prevState,
+        //   pokemons: [...prevState.pokemons, pokemonUrl]
+        // }));
+        onChoosePokemon(pokemonUrl);
         setStarterPokemonData(data)
         handleNameSubmit();
       });
   }
 
   const startGame = () => {
-    setStage("Locations");
+    onGameStarted();
   };
 
   return (
@@ -36,7 +37,7 @@ function NewGame({ userData, setUserData, setStage }) {
         <Welcome
           userData={userData}
           setUserData={setUserData}
-          handleUsernameChange={(e) => setUserData(prevState => ({ ...prevState, username: e.target.value }))}
+          handleUsernameChange={(e) => onSetUsername(e.target.value) /* setUserData(prevState => ({ ...prevState, username: e.target.value })) */}
           handleNameSubmit={handleNameSubmit}
         />
       ) : userData.pokemons.length ? (
