@@ -78,11 +78,11 @@ function PokemonEncounter ({ userData, setStage, setBattleData, }) {
                             name={pokemonData.name}/>
                             {isReoccuringPokemon() ? (
                                 <>
-                                    <h3>Looks like we already caught this Pokémon, do you still wish to fight?</h3>
+                                    <h2>Looks like we already caught this Pokémon, do you still wish to fight?</h2>
                                 </>
                             ) : (
                                 <>
-                                    <h3>Are you sure you want to battle this Pokémon?</h3>
+                                    <h2>Are you sure you want to battle this Pokémon?</h2>
                                 </>
                             )}
                             <button onClick = {handleFight}>Fight</button>
