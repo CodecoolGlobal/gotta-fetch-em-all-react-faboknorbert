@@ -142,6 +142,8 @@ Before you begin, ensure you have met the following requirements:
 
 Change a location and an area where you want to travel. If there is a Pokémon there, choose one of yours and try to catch it by winning the fight.
 
+![alt-text](https://i.imgur.com/F7xNUGr.png)
+
 <!-- ROADMAP -->
 ## Roadmap
 
